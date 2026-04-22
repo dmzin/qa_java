@@ -1,5 +1,6 @@
 import com.example.Alex;
 import com.example.Feline;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -12,30 +13,33 @@ import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class AlexTests {
 
+    private Alex alex;
+
     @Mock
     Feline feline;
 
+    @Before
+    public void setup() throws Exception {
+        alex = new Alex(feline);
+    }
+
     @Test
     public void getFriendsReturnsCorrectList() throws Exception {
-        Alex alex = new Alex(feline);
         assertEquals(List.of("Марти", "Глория", "Мелман"), alex.getFriends());
     }
 
     @Test
     public void getPlaceOfLivingReturnsZoo() throws Exception {
-        Alex alex = new Alex(feline);
         assertEquals("Нью-Йоркский зоопарк", alex.getPlaceOfLiving());
     }
 
     @Test
     public void getKittensReturnsZero() throws Exception {
-        Alex alex = new Alex(feline);
         assertEquals(0, alex.getKittens());
     }
 
     @Test
     public void doesHaveManeReturnsTrue() throws Exception {
-        Alex alex = new Alex(feline);
         assertEquals(true, alex.doesHaveMane());
     }
 }
